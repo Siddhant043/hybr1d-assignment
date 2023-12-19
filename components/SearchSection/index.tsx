@@ -1,18 +1,37 @@
-"use client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import styles from "./index.module.css";
 import { BsSearch } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./index.module.css";
+import { selectSearchText, setArticles, setSearchText } from "@/lib/redux";
 import getArticles from "@/apiFunctions/getArticles";
+import Loader from "../Loader";
 
-const SearchSection = () => {
-  const [searchText, setSearchText] = useState<string>("");
-  const [isLastLineVisible, setIsLastLineVisible] = useState<boolean>(true);
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+interface SearchSectionProps {
+  setIsLoading: Function;
+  setData: Function;
+  isLoading: boolean;
+}
+
+const SearchSection: React.FC<SearchSectionProps> = ({
+  setIsLoading,
+  isLoading,
+  setData,
+}) => {
+  const dispatch = useDispatch();
+  const searchData = useSelector(selectSearchText);
+  const [searchQuery, setSearchQuery] = useState<string>(searchData);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLastLineVisible(false);
-    getArticles();
+    const data = await getArticles(setIsLoading, searchQuery);
+    setData(data);
+    setIsSubmitted(true);
+    dispatch(setArticles(data));
+    dispatch(setSearchText(searchQuery));
   };
+
   return (
     <main className={styles.main}>
       <motion.div
@@ -26,19 +45,19 @@ const SearchSection = () => {
           Get Hacker News articles instantly
         </h3>
 
-        <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.searchboxContainer}>
-            <BsSearch className={styles.searchIcon} />
+            <BsSearch className={styles.searchIcon} onClick={handleSubmit} />
             <input
               type="text"
               className={styles.searchInput}
-              value={searchText}
+              value={searchQuery}
               placeholder="Search for articles"
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
         </form>
-        {isLastLineVisible && (
+        {!isSubmitted && (
           <div className={styles.lastLineContainer}>
             <span className={styles.peopleAlsoSearchedFor}>
               People also searched for:{" "}
@@ -46,6 +65,7 @@ const SearchSection = () => {
             </span>
           </div>
         )}
+        {isLoading && <Loader />}
       </motion.div>
     </main>
   );

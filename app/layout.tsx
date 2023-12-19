@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+"use client";
 import "./globals.css";
-import { QueryCache, QueryClientProvider } from "@tanstack/react-query";
-
-export const metadata: Metadata = {
-  title: "Hacker Search",
-  description: "Search for Hacker News Articles quickly",
-};
+import { Provider } from "react-redux";
+import { reduxStore } from "@/lib/redux";
 
 export default function RootLayout({
   children,
@@ -14,8 +9,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <Provider store={reduxStore}>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </Provider>
   );
 }
