@@ -11,8 +11,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
 }
 
 .title {
@@ -22,6 +21,7 @@
   font-weight: 700;
   line-height: 6.25rem; /* 138.889% */
   letter-spacing: -0.225rem;
+  width: 100%;
 }
 
 .iconAndTextContainer {
@@ -81,4 +81,46 @@
   align-items: center;
   width: 100%;
   margin-top: 5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    padding: 2rem;
+  }
+  .innerContainer {
+    align-items: flex-start;
+  }
+  .title {
+    text-align: left;
+    color: #fff;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.25rem; /* 138.889% */
+    letter-spacing: normal;
+    width: 30rem;
+  }
+  .iconAndTextContainer {
+    width: 20rem;
+  }
+  .pointsIcon {
+    font-size: 3rem;
+    color: #f9d978;
+    margin-right: 0.5rem;
+  }
+  .points {
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-top: 0.7rem;
+    letter-spacing: 0.056rem;
+  }
+  .text {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .text2 {
+    font-size: 1rem;
+  }
 }

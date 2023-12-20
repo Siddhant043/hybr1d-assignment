@@ -77,3 +77,43 @@
   margin-right: auto;
   margin: 2rem;
 }
+
+@media screen and (max-width: 600px) {
+  .main {
+    width: 22rem;
+    height: 20rem;
+    padding: 1rem;
+  }
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: 1.3;
+  }
+  .name {
+    font-size: 1rem;
+    letter-spacing: normal;
+  }
+  .pointsIcon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+  .points {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 0.4rem;
+    letter-spacing: normal;
+  }
+  .date {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: normal;
+  }
+
+  .commentsIcon {
+    font-size: 2rem;
+  }
+  .buttonContainer {
+    margin: 1.5rem;
+  }
+}

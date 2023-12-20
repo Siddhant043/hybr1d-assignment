@@ -12,10 +12,21 @@
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
 }
-
-.loaderContainer {
-  background-color: red;
-  align-items: start;
-  justify-content: start;
-  width: 100%;
+@media screen and (max-width: 600px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+  }
+  .cardsContainer {
+    display: grid;
+    row-gap: 2rem;
+    column-gap: 2rem;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
