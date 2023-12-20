@@ -2,6 +2,7 @@
 import "./globals.css";
 import { Provider } from "react-redux";
 import { reduxStore } from "@/lib/redux";
+import SearchSection from "@/components/SearchSection";
 
 export default function RootLayout({
   children,
@@ -11,7 +12,10 @@ export default function RootLayout({
   return (
     <Provider store={reduxStore}>
       <html lang="en">
-        <body>{children}</body>
+        <body>
+          <SearchSection />
+          {children}
+        </body>
       </html>
     </Provider>
   );

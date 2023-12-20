@@ -3,33 +3,38 @@ import { motion } from "framer-motion";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.css";
-import { selectSearchText, setArticles, setSearchText } from "@/lib/redux";
+import {
+  clearArticles,
+  selectSearchText,
+  setArticles,
+  setSearchText,
+} from "@/lib/redux";
 import getArticles from "@/apiFunctions/getArticles";
 import Loader from "../Loader";
+import { useRouter, usePathname } from "next/navigation";
 
-interface SearchSectionProps {
-  setIsLoading: Function;
-  setData: Function;
-  isLoading: boolean;
-}
+interface SearchSectionProps {}
 
-const SearchSection: React.FC<SearchSectionProps> = ({
-  setIsLoading,
-  isLoading,
-  setData,
-}) => {
+const SearchSection: React.FC<SearchSectionProps> = ({}) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const pathname = usePathname();
   const searchData = useSelector(selectSearchText);
   const [searchQuery, setSearchQuery] = useState<string>(searchData);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(clearArticles());
     const data = await getArticles(setIsLoading, searchQuery);
-    setData(data);
-    setIsSubmitted(true);
     dispatch(setArticles(data));
     dispatch(setSearchText(searchQuery));
+    if (pathname.includes("/articles")) {
+      router.replace("/");
+    } else {
+      setIsSubmitted(true);
+    }
   };
 
   return (

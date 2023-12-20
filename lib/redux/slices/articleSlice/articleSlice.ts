@@ -17,10 +17,14 @@ const articleSlice = createSlice({
     setArticles: (state, action: PayloadAction<[]>) => {
       state.articles = action.payload;
     },
+    clearArticles: (state) => {
+      state.articles = [];
+    },
   },
 });
 
-export const { setSearchText, setArticles } = articleSlice.actions;
+export const { setSearchText, setArticles, clearArticles } =
+  articleSlice.actions;
 
 export const selectArticles = (state: any) => state.article.articles;
 export const selectSearchText = (state: any) => state.article.searchText;

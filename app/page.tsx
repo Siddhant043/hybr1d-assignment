@@ -1,26 +1,31 @@
 "use client";
 import styles from "./page.module.css";
-import { motion } from "framer-motion";
-import SearchSection from "@/components/SearchSection";
-import { useState } from "react";
 import ArticleCard from "@/components/ArticleCard";
 import { selectArticles } from "@/lib/redux";
 import { useSelector } from "react-redux";
-import Loader from "@/components/Loader";
+
+const selectData = [
+  { label: "Nigeria", value: "NG" },
+  { label: "Japan", value: "JP" },
+  { label: "Korea", value: "KO" },
+  { label: "Kenya", value: "KE" },
+  { label: "United Kingdom", value: "UK" },
+  { label: "Ghana", value: "GH" },
+  { label: "Uganda", value: "UG" },
+];
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState(useSelector(selectArticles));
+  const data = useSelector(selectArticles);
+  const sortedByDate = [...data].sort(
+    (a: { created_at_i: number }, b: { created_at_i: number }) =>
+      b.created_at_i - a.created_at_i
+  );
+
   return (
     <main className={styles.main}>
-      <SearchSection
-        setIsLoading={setIsLoading}
-        setData={setData}
-        isLoading={isLoading}
-      />
       <div className={styles.cardsContainer}>
-        {!isLoading &&
-          data?.map((article: any) => (
+        {sortedByDate.length > 0 &&
+          sortedByDate.map((article: any) => (
             <ArticleCard
               key={article.created_at_i}
               title={article.title}
