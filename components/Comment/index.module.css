@@ -71,8 +71,33 @@
   .main {
     background-color: #d9d9d9;
     border-radius: 0.625rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     width: 100%;
     margin-bottom: 1rem;
+  }
+  .dot {
+    height: 0.3rem;
+    width: 0.3rem;
+    margin-right: 0.4rem;
+  }
+  .author {
+    font-size: 0.6rem;
+  }
+  .commentText {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+  }
+  .date {
+    font-size: 0.6rem;
+    letter-spacing: normal;
+  }
+  .line {
+    width: 2.125rem;
+    height: 0.045rem;
+    margin-right: 0.3rem;
+  }
+  .showHideText {
+    font-size: 0.6rem;
   }
 }

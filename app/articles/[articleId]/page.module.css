@@ -85,7 +85,7 @@
 
 @media screen and (max-width: 600px) {
   .main {
-    padding: 2rem;
+    padding: 1rem;
   }
   .innerContainer {
     align-items: flex-start;
@@ -98,13 +98,13 @@
     font-weight: 700;
     line-height: 3.25rem; /* 138.889% */
     letter-spacing: normal;
-    width: 30rem;
+    width: 100%;
   }
   .iconAndTextContainer {
     width: 20rem;
   }
   .pointsIcon {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #f9d978;
     margin-right: 0.5rem;
   }
@@ -122,5 +122,15 @@
 
   .text2 {
     font-size: 1rem;
+  }
+  .points {
+    font-size: 1.3rem;
+    margin-top: 0.2rem;
+    letter-spacing: normal;
+  }
+
+  .commentsTitle {
+    margin-top: 3rem;
+    font-size: 1.6rem;
   }
 }
