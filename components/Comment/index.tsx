@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./index.module.css";
-import { format } from "date-fns";
+import formatDate from "@/utils/formatDate";
 
 interface CommentProps {
   comment: any;
@@ -9,7 +9,7 @@ interface CommentProps {
 
 const Comment = ({ comment }: CommentProps) => {
   const [viewReplies, setViewReplies] = useState<boolean>(true);
-  const formattedDate = format(comment.created_at, "dd/MM/yyyy");
+  const formattedDate = formatDate(comment.created_at);
   const handleShowReplies = () => {
     setViewReplies((prev) => !prev);
   };

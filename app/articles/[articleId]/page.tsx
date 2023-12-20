@@ -4,9 +4,9 @@ import styles from "./page.module.css";
 import getArticleDetails from "@/apiFunctions/getArticleDetails";
 import Loader from "@/components/Loader";
 import { IoStar } from "react-icons/io5";
-import { format } from "date-fns";
 import PrimaryButton from "@/components/PrimaryButton";
 import Comment from "@/components/Comment";
+import formatDate from "@/utils/formatDate";
 
 const ArticleDetails = ({ params }: any) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ const ArticleDetails = ({ params }: any) => {
     const data = await getArticleDetails(params.articleId, setIsLoading);
     setArticleDetails({
       ...data,
-      created_at: format(data.created_at, "dd/MM/yyyy"),
+      created_at: formatDate(data.created_at),
     });
   };
   useEffect(() => {

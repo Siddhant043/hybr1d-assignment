@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 import { IoStar } from "react-icons/io5";
-import { format } from "date-fns";
 import { BiSolidComment } from "react-icons/bi";
 import PrimaryButton from "../PrimaryButton";
+import formatDate from "@/utils/formatDate";
 
 interface ArticleCardProps {
   title: string;
@@ -24,7 +24,7 @@ const ArticleCard = ({
   author,
   points,
 }: ArticleCardProps) => {
-  const formattedDate = format(createdAt, "dd/MM/yyyy");
+  const formattedDate = formatDate(createdAt);
   const router = useRouter();
   const handleRoute = () => {
     router.push(`/articles/${id}`);
